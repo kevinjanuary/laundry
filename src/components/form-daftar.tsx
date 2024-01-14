@@ -2,22 +2,23 @@
 
 import { daftar } from "@/actions/auth"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { useRouter } from "next/navigation"
 import { useFormState } from "react-dom"
 import { FormAlert } from "./form-alert"
 import { FormButton } from "./form-button"
 
 const FormDaftar = () => {
   const [state, formAction] = useFormState(daftar, null)
+  const router = useRouter()
 
+  if (state?.success === true) {
+    router.push("/dashboard")
+  }
   return (
-    <form action={formAction}>
+    <form action={formAction} className="space-y-2">
       <FormAlert success={state?.success} message={state?.message} />
-      <Label htmlFor="nama">Nama</Label>
       <Input type="nama" name="nama" id="nama" placeholder="Nama" />
-      <Label htmlFor="email">Email</Label>
       <Input type="email" name="email" id="email" placeholder="Email" />
-      <Label htmlFor="password">Kata sandi</Label>
       <Input
         type="password"
         name="password"
