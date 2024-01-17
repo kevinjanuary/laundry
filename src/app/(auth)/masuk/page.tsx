@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const MasukPage = () => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 h-full flex flex-col p-6">
       <Link href="/" className="flex gap-4">
         <ArrowLeftIcon className="w-6 h-6" />
         <span>Back</span>
