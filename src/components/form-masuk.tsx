@@ -1,12 +1,11 @@
 "use client"
 
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { FormAlert } from "./form-alert"
-import { FormButton } from "./form-button"
-import { useState } from "react"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { FormAlert } from "./form-alert"
+import { FormButton } from "./form-button"
 
 const FormMasuk = () => {
   const [email, setEmail] = useState("")
@@ -24,8 +23,7 @@ const FormMasuk = () => {
     }).then((res) => {
       if (res?.ok) {
         setState({ success: true, message: "Berhasil masuk" })
-
-        router.push("/")
+        router.push("/dashboard")
       } else {
         setState({ success: false, message: res?.error || "Terjadi kesalahan" })
       }
