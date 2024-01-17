@@ -1,20 +1,20 @@
-import { db } from "@/lib/db"
-import { getSession } from "@/lib/session"
-import { ChevronRightIcon } from "@radix-ui/react-icons"
-import Image from "next/image"
-import Link from "next/link"
-import { redirect } from "next/navigation"
+import { db } from "@/lib/db";
+import { getSession } from "@/lib/session";
+import { ChevronRightIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const UserDashboardPage = async () => {
-  const session = await getSession()
+  const session = await getSession();
   if (!session) {
-    redirect("/masuk")
+    redirect("/masuk");
   }
 
-  const products = await db.product.findMany()
+  const products = await db.product.findMany();
 
   return (
-    <div>
+    <div className="space-y-4">
       <span className="text-lg">
         Hai {session.user?.name}, Mau laundry apa hari ini?
       </span>
@@ -26,9 +26,9 @@ const UserDashboardPage = async () => {
               <Image
                 src={product.image}
                 alt={product.name}
-                width={40}
-                height={40}
-                className="w-10 aspect-square object-cover rounded-md"
+                width={64}
+                height={64}
+                className="w-16 aspect-square object-cover rounded-md"
               />
               <span>{product.name}</span>
               <ChevronRightIcon className="ml-auto" />
@@ -37,7 +37,7 @@ const UserDashboardPage = async () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserDashboardPage
+export default UserDashboardPage;
