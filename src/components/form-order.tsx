@@ -1,16 +1,15 @@
 "use client"
 
-import { Product } from "@prisma/client"
-import { Input } from "./ui/input"
-import { useState } from "react"
-import { Button } from "./ui/button"
-import { FormAlert } from "./form-alert"
-import { formatRupiah } from "@/lib/rupiah"
 import { createOrder } from "@/actions/order"
-import { FormButton } from "./form-button"
-import { useFormState } from "react-dom"
-import { stat } from "fs"
+import { formatRupiah } from "@/lib/rupiah"
+import { Product } from "@prisma/client"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { useFormState } from "react-dom"
+import { FormAlert } from "./form-alert"
+import { FormButton } from "./form-button"
+import { Button } from "./ui/button"
+import { Input } from "./ui/input"
 
 const FormOrder = ({ product }: { product: Product }) => {
   const [confirm, setConfirm] = useState(false)
@@ -39,9 +38,9 @@ const FormOrder = ({ product }: { product: Product }) => {
               <span className="font-medium">{product.estimated}</span>
             </div>
             <div className="flex flex-col">
-              <span>Harga Per Paket</span>
+              <span>Harga per kg</span>
               <span className="font-medium">
-                {formatRupiah(product.price)} / Paket
+                {formatRupiah(product.price)} / kg
               </span>
             </div>
           </div>
@@ -89,9 +88,9 @@ const FormOrder = ({ product }: { product: Product }) => {
                 <span className="font-medium">{product.estimated}</span>
               </div>
               <div className="flex flex-col">
-                <span>Harga Per Paket</span>
+                <span>Harga per kg</span>
                 <span className="font-medium">
-                  {formatRupiah(product.price)} / Paket
+                  {formatRupiah(product.price)} / kg
                 </span>
               </div>
             </div>
@@ -102,7 +101,7 @@ const FormOrder = ({ product }: { product: Product }) => {
             <div className="flex justify-between mt-2 pt-2 border-t">
               <div className="flex flex-col">
                 <span>Kuantitas</span>
-                <span className="font-medium">{quantity} Paket</span>
+                <span className="font-medium">{quantity} kg</span>
               </div>
               <div className="flex flex-col">
                 <span>Total</span>
