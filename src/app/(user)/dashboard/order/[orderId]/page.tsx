@@ -82,7 +82,7 @@ const UserOrderPage = async ({
           <div className="flex flex-col">
             <span className="font-medium">Kuantitas</span>
             <span>
-              {order.quantity} Paket x {formatRupiah(order.price)}
+              {order.quantity} kg x {formatRupiah(order.price)}
             </span>
           </div>
           <div className="flex flex-col">

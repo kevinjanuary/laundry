@@ -33,7 +33,7 @@ const UserNotificationPage = async () => {
               height={64}
               className="w-16 h-16 object-cover"
             />
-            <div className="flex gap-4 p-2 border-2 rounded-xl text-sm">
+            <div className="flex w-full gap-4 p-3 border-2 rounded-xl text-sm">
               <div className="flex flex-col text-muted-foreground">
                 <span>Jenis Laundry</span>
                 <span>Jangka Waktu</span>
@@ -42,7 +42,16 @@ const UserNotificationPage = async () => {
               <div className="flex flex-col">
                 <span>: {item.product.name}</span>
                 <span>: {item.product.estimated}</span>
-                <span>: {item.status}</span>
+                <span>
+                  :{" "}
+                  {item.status === "DIPROSES"
+                    ? "Diproses"
+                    : item.status === "MENERIMA"
+                    ? "Menerima"
+                    : item.status === "SIAP_DIAMBIL"
+                    ? "Siap diambil"
+                    : "Selesai"}
+                </span>
               </div>
             </div>
           </div>
