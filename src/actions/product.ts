@@ -71,6 +71,34 @@ export const addProduct = async (prevState: unknown, formData: FormData) => {
   }
 }
 
+export const deleteProduct = async (formData: FormData) => {
+  const id = formData.get("id")?.toString().trim()
+
+  if (!id) {
+    throw "Terjadi kesalahan, mohon refresh halaman."
+  }
+
+  try {
+    await db.product.delete({
+      where: {
+        id
+      }
+    })
+
+    revalidatePath("/admin/dashboard/products")
+
+    return {
+      success: true,
+      message: "Berhasil menghapus produk"
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: (error as string) || "Terjadi kesalahan",
+    }
+  }
+}
+
 export const uploadImage = async (formData: FormData) => {
   const file: File | null = formData.get("file") as unknown as File
   if (!file) {
