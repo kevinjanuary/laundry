@@ -1,8 +1,6 @@
-import { LogoutButton } from "@/components/logout-button"
-import { Button } from "@/components/ui/button"
+import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { UserRole } from "@prisma/client"
-import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
 
 const AdminDashboarPage = async () => {
@@ -14,19 +12,20 @@ const AdminDashboarPage = async () => {
     notFound()
   }
 
+  const products = await db.product.findMany()
+  const orders = await db.order.findMany()
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-between gap-2 h-10 items-center">
-        <h1>Admin Dashboard</h1>
-        <LogoutButton />
-      </div>
-      <div className="flex gap-2">
-        <Link href="/admin/dashboard/products">
-          <Button>Pengaturan produk</Button>
-        </Link>
-        <Link href="/admin/dashboard/orders">
-          <Button>Pesanan</Button>
-        </Link>
+      <div className="flex flex-wrap gap-4">
+        <div className="w-1/3 flex flex-col gap-2 border rounded-lg px-4 py-2">
+          <h2 className="font-medium text-lg">Produk</h2>
+          <span>{products.length}</span>
+        </div>
+        <div className="w-1/3 flex flex-col gap-2 border rounded-lg px-4 py-2">
+          <h2 className="font-medium text-lg">Pesanan</h2>
+          <span>{orders.length}</span>
+        </div>
       </div>
     </div>
   )
